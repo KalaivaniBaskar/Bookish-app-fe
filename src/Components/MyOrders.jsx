@@ -16,7 +16,7 @@ const MyOrders = () => {
      
      const getAllOrders = async() => {
         try {
-          setmodalMsg("Fetching books..")
+          setmodalMsg("Getting your orders..")
            handleOpen();
           const token = localStorage.getItem('tokenAuth')
           const email = localStorage.getItem('email')

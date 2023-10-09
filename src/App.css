@@ -10,6 +10,7 @@
   width: 100dvw; 
   height: 90dvh;
   display: flex; 
+  flex-direction: column;
   box-sizing: border-box;
   padding-block: 15px;
   padding-inline: 10px;
@@ -144,4 +145,29 @@
   background-color: cornflowerblue;
   width: 0.1rem;
   border-radius: 1rem;
+}
+.paginationButtons{
+  width: auto;
+  margin-top: 2rem;
+  list-style: none;
+  display: flex;
+  justify-content: center; 
+  background-color: transparent;
+}
+
+.paginationButtons  a{
+  padding: 0.5rem;
+  margin: 0.3rem;
+  border-radius:10px;
+  border: 1px solid blue;
+  cursor: pointer;
+  background-color: whitesmoke;
+  font-weight: bold;
+}
+.previous a, .next a{
+  text-decoration: none;
+
+}
+.paginationButtons  a:hover, .paginationActive a{
+  background-color: rgb(236, 191, 204);
 }

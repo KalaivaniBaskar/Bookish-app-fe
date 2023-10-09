@@ -9,6 +9,7 @@ import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ReactPaginate from 'react-paginate'
 
 function Home() {
     
@@ -18,7 +19,15 @@ function Home() {
     const [modalMsg, setmodalMsg] = useState("")
     const handleOpen = () => setOpen(true);
     const handleClose = () => { setOpen(false)} 
-  
+
+    //for pagination
+    const [pgNum, setPgNum] = useState(0)
+    const perPage = 4; 
+    const itemsRead = pgNum * perPage
+    const changePage = ({selected}) => {
+      setPgNum(selected)
+  }
+
     // make payment
     const initPayment = (data, item, email) => {
       const options= {
@@ -118,7 +127,7 @@ function Home() {
       <div className='card-wrap'> 
          {
           allProducts.length && 
-          allProducts.map(el => 
+          allProducts.slice(itemsRead, itemsRead + perPage).map(el => 
             <Box className='book-card' key={el.product_ID} component={Paper}>
             <img src={el.prod_pic_URL} alt={el.title} />
             <p className='book-title'>{el.title}</p>
@@ -149,6 +158,21 @@ function Home() {
          }
         
       </div>
+      <Box marginBottom={0}>
+        <ReactPaginate 
+        previousLabel={"Prev"}
+        nextLabel={"Next"}
+        pageCount={ Math.ceil(allProducts.length / perPage)}
+        pageRangeDisplayed={1}
+        marginPagesDisplayed={1}
+        onPageChange={changePage}
+        containerClassName={'paginationButtons'}
+        previousLinkClassName='previousBtn'
+        nextLinkClassName='nextBtn'
+        disabledClassName='paginationDisabled'
+        activeClassName='paginationActive'>
+      </ReactPaginate>
+      </Box> 
       </div>
 
       <ToastContainer />
